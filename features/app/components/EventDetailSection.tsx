@@ -1,30 +1,37 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { colorMap, type Event } from "@/lib/eventData";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+"use client";
 
-const EventDetailSectionSlide = ({ event }: { event: Event }) => {
+import type { Event } from "@/lib/eventData";
+import EventDetailSlide from "./EventDetailSlide";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const EventDetailSection = ({ events }: { events: Event[] }) => {
+  useGSAP(() => {
+    const sections = gsap.utils.toArray<HTMLElement>("section.event-slide");
+
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false,
+        snap: 1, // snaps to next pinned section
+      });
+    });
+  }, []);
+
   return (
-    <section
-      id={event.id}
-      className={cn(
-        "min-h-screen max-h-screen overflow-hidden",
-        colorMap[event.bgColor]
-      )}
-    >
-      <h2 className="text-4xl md:text-6xl lg:text-8xl text-primary-foreground font-bold text-center py-4 md:py-12">
-        {event.title}
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <AspectRatio className="size-80 md:size-3/4 mx-auto" ratio={5 / 4}>
-          <Image fill src={event.image} alt={event.title} className="object-contain"></Image>
-        </AspectRatio>
-        <div className="pt-8">
-          <p className="text-primary-foreground text-center font-normal md:text-3xl">{event.description}</p>
-        </div>
-      </div>
-    </section>
+    <div className="relative">
+      {events.map((event) => (
+        <EventDetailSlide key={event.id} event={event} />
+      ))}
+    </div>
   );
 };
 
-export default EventDetailSectionSlide;
+export default EventDetailSection;
+
