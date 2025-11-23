@@ -17,7 +17,7 @@ const Navbar = () => {
   const { data: session, isPending, error, refetch } = useSession();
 
   return (
-    <header className="sticky top-0 left-0 w-full backdrop-blur border-b z-50">
+    <header className="left-0 w-full backdrop-blur border-b z-50">
       <nav className="flex items-center justify-between px-4 py-3 md:px-8">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 import GeometricBackground from "@/components/GeometricBackground";
 import Marquee from "@/components/Marquee";
+import EventDetailSectionSlide from "@/features/app/components/EventDetailSection";
 import { colorMap, eventsData } from "@/lib/eventData";
 import { StarIcon } from "lucide-react";
 
@@ -75,6 +76,11 @@ const Home = () => {
           </Marquee>
         </div>
       </section>
+      {
+        eventsData?.map((event) => (
+          <EventDetailSectionSlide key={event.id} event={event} />
+        ))
+      }
     </div>
   );
 };
