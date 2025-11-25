@@ -2,7 +2,7 @@ import { createAuthClient } from "better-auth/react";
 import { inferAdditionalFields } from "better-auth/client/plugins";
 import { auth } from "./auth";
 import { adminClient } from "better-auth/client/plugins";
-import { ac, admin, editor, user } from "./permission";
+import { ac, admin,  user } from "./permission";
 
 export const authClient = createAuthClient({
   plugins: [
@@ -12,7 +12,6 @@ export const authClient = createAuthClient({
       ac,
       roles: {
         admin,
-        editor,
         user,
       },
     }),

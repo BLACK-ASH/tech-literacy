@@ -26,7 +26,7 @@ const EventDetailSlide = ({ event }: { event: Event }) => {
             className="object-contain"
           ></Image>
         </AspectRatio>
-        <div className="px-4 py-12 flex flex-col gap-[12vh] ">
+        <div className="px-4 py-12 flex flex-col gap-[8vh] ">
           <p className="text-primary-foreground text-center font-normal md:text-3xl">
             {event.description}
           </p>

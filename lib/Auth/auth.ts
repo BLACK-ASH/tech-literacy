@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { admin as adminPlugin } from "better-auth/plugins";
-import { ac, admin, editor, user } from "./permission";
+import { ac, admin, user } from "./permission";
 import { sendEmailVerificationMail } from "../Mailer/send-email-verification-mail";
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
@@ -20,7 +20,6 @@ export const auth = betterAuth({
       ac,
       roles: {
         admin,
-        editor,
         user,
       },
     }),

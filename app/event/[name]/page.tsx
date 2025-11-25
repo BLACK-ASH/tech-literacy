@@ -7,16 +7,21 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+} from "@/components/ui/card";
+import { hasPermissionToCancleParticipation } from "@/features/event/action/cancelParticipation";
 import { getParticipants } from "@/features/event/action/getParticipant";
+import DeleteParticipationButton from "@/features/event/components/DeleteParticipationButton";
 import { ParticipationType } from "@/lib/Database/Models/participation.model";
 import { eventsData } from "@/lib/eventData";
 import { Separator } from "@radix-ui/react-separator";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-import React, { Suspense } from "react";
 
 const page = async ({ params }: { params: { name: string } }) => {
   const { name } = await params;
@@ -92,9 +97,15 @@ const page = async ({ params }: { params: { name: string } }) => {
         <Separator className="my-4" />
         <div className="space-y-4">
           {participants &&
-            participants.map((participant: ParticipationType) => (
+            participants.map(async (participant: ParticipationType) => (
               <Card key={participant.members[0].name}>
-                <CardContent>
+                <CardContent className="relative">
+                  {(await hasPermissionToCancleParticipation(participant)) && (
+                    <DeleteParticipationButton
+                      className="absolute right-4 -top-2"
+                      participation={participant}
+                    ></DeleteParticipationButton>
+                  )}
                   {participant.members.map((member, i) => (
                     <div key={member.name}>
                       {i !== 0 && (

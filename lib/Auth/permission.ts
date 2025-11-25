@@ -5,6 +5,7 @@ import { defaultStatements } from "better-auth/plugins/admin/access";
 const statements = {
   ...defaultStatements,
   event: ["create", "update", "delete", "share"],
+  participation: ["create", "update", "delete"],
 } as const;
 
 // ✅ 2. Initialize access control
@@ -13,12 +14,10 @@ export const ac = createAccessControl(statements);
 // ✅ 3. Define roles using `ac.newRole`
 export const admin = ac.newRole({
   event: ["create", "update", "delete", "share"],
-});
-
-export const editor = ac.newRole({
-  event: ["create", "update"],
+  participation: ["create", "update", "delete"],
 });
 
 export const user = ac.newRole({
   event: ["create"],
+  participation: ["create"],
 });

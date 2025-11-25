@@ -42,7 +42,7 @@ const emailAndPasswordSignIn = async (
         if (ctx.error.status === 403) {
           await authClient.sendVerificationEmail({ email, callbackURL: "/" });
           toast.error("Please verify your email address");
-          router.push("/login/verify-email");
+          router.push("/login/verify-email?email=" + email);
           return;
         }
         toast.error(ctx.error.message);

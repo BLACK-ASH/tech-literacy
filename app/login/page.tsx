@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-const page = () => {
+const Page = () => {
   const { data: session, isPending, error, refetch } = authClient.useSession();
   const router = useRouter();
   useEffect(() => {
@@ -37,4 +37,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
