@@ -15,7 +15,7 @@ const EventDayDetails = [
   },
   {
     id: 3,
-    label: "8 AM Onwards",
+    label: "9 AM Onwards",
   },
 ];
 
