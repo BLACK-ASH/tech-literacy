@@ -22,13 +22,14 @@ import { Separator } from "@radix-ui/react-separator";
 import { HomeIcon, Trash2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const page = async ({ params }: { params: { name: string } }) => {
   const { name } = await params;
 
   const event = eventsData.find((event) => event.id === name);
   if (!event) {
-    return <h1>Event not found</h1>;
+    return notFound();
   }
 
   const participants: ParticipationType[] = await getParticipants(name);
