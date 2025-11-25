@@ -90,19 +90,23 @@ const page = async ({ params }: { params: { name: string } }) => {
           Participants
         </h2>
         <Separator className="my-4" />
-        {participants &&
-          participants.map((participant: ParticipationType) => (
-            <Card key={participant.members[0].name}>
-              <CardContent>
-                {participant.members.map((member, i) => (
-                  <div key={member.name}>
-                    {i !== 0 && <Separator className="my-2 h-px bg-primary" />}
-                    <h3>{member.name}</h3>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-4">
+          {participants &&
+            participants.map((participant: ParticipationType) => (
+              <Card key={participant.members[0].name}>
+                <CardContent>
+                  {participant.members.map((member, i) => (
+                    <div key={member.name}>
+                      {i !== 0 && (
+                        <Separator className="my-2 h-px bg-primary" />
+                      )}
+                      <h3>{member.name}</h3>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            ))}
+        </div>
       </main>
     </div>
   );

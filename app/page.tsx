@@ -77,6 +77,8 @@ const Home = () => {
         </div>
       </section>
       <EventDetailSection events={eventsData} />
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
     </div>
   );
 };

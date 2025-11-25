@@ -10,6 +10,7 @@ import LogoutButton from "./LogoutButton";
 
 const links = [
   { id: 1, title: "Home", href: "/" },
+  { id: 2, title: "Event", href: "/event" },
 ];
 
 const Navbar = () => {
