@@ -97,7 +97,6 @@ const page = async ({ params }: { params: { name: string } }) => {
                     <div key={member.name}>
                       {i !== 0 &&<Separator className="my-2 h-px bg-primary"/>}
                       <h3>{member.name}</h3>
-                      <p>{member.email}</p>
                     </div>
                   ))}
                 </CardContent>

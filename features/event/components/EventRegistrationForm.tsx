@@ -65,8 +65,7 @@ const EventRegistrationForm = ({ event }: { event: Event }) => {
     if (res.status === "success") {
       toast.success(res.message);
       console.log(res.data);
-      
-      // router.push("/");
+      router.push(`/event/${event.id}`);
     }
   };
 
