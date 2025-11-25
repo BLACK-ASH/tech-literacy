@@ -1,12 +1,14 @@
 export type Event = {
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-    time: string;
-    duration: string;
-    type: "solo" | "team";
-    bgColor: string;
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  maxMembers?: number;
+  image: string;
+  time: string;
+  duration: string;
+  type: "solo" | "team";
+  bgColor: string;
 };
 
 export const colorMap: Record<string, string> = {
@@ -19,61 +21,76 @@ export const colorMap: Record<string, string> = {
 
 
 export const eventsData: Event[] = [
-    {
-        id: "trivia-quiz",
-        title: "MindMatrix : The Ultimate Tech Trivia Showdown",
-        description:
-            "Step into the arena where only the sharpest minds survive. MindMatrix is an adrenaline-fueled tech quiz designed to push your logic, memory, and speed to the edge. From mind-twisting puzzles to cutting-edge tech questions, this battle will test your mastery of software, hardware, AI, programming, cybersecurity, and beyond. Every round gets tougher, every second counts, and only the most brilliant will emerge victorious.",
-        image: "/trivia-quiz.webp",
-        time: "10:00 AM",
-        duration: "2 hours",
-        type: "solo",
-        bgColor: "orange"
-    },
+  {
+    id: "trivia-quiz",
+    title: "MindMatrix : The Ultimate Tech Trivia Showdown",
+    description:
+      "A fast-paced tech quiz where only the sharpest minds survive.",
+    details:
+      "MindMatrix challenges participants with rapid-fire questions from programming, AI, hardware, networking, cybersecurity, and real-world tech scenarios. Each round increases in difficulty, pushing participants' logic, speed, and accuracy. Only the most knowledgeable and quick-thinking contestants advance to the final showdown.",
+    image: "/trivia-quiz.webp",
+    time: "10:00 AM",
+    duration: "2 hours",
+    type: "solo",
+    bgColor: "orange",
+  },
 
-    {
-        id: "web-dev",
-        title: "WebForge : Design & Build Challenge",
-        description:
-            "Craft. Code. Conquer. WebForge challenges participants to build a stunning, functional, and optimized website within a limited time frame. Creativity meets clean code as you bring a complete digital experience to life. Judges will evaluate UI/UX excellence, performance, responsiveness, innovation, and technical depth. Whether you're a designer or a coder, this is your chance to forge the next big web experience.",
-        image: "/web-dev.jpg",
-        time: "1:00 PM",
-        duration: "2 hours",
-        type: "solo",
-        bgColor: "sky"
-    },
-    {
-        id: "debugging",
-        title: "BugSlayer : Debugging Gauntlet",
-        description:
-            "Enter the battlefield of broken code. BugSlayer is a fast-paced debugging challenge that throws real, messy, unpredictable bugs right at you. Participants must dissect faulty logic, optimize slow functions, fix cryptic errors, and stabilize codebases under tight time pressure. It’s a race against time and complexity—where precision, problem-solving, and deep technical insight determine the true champions.",
-        image: "/debugging.png",
-        time: "3:30 PM",
-        duration: "2 hours",
-        type: "solo",
-        bgColor: "purple"
-    },
-    {
-        id: "hackathon",
-        title: "Lakhathon : Sprint to Innovation",
-        description:
-            "Lakhathon is an intense hackathon where ideas transform into real-world tech solutions. Participants collaborate, brainstorm, code, and build under pressure as they tackle problem statements ranging from AI to social innovation. Expect late-game twists, rapid prototyping, debugging duels, and high-energy teamwork. Only the most resilient and creative minds will claim the final breakthrough.",
-        image: "/hackathon.avif",
-        time: "2:00 PM",
-        duration: "2 hours",
-        type: "team",
-        bgColor: "green"
-    },
+  {
+    id: "web-dev",
+    title: "WebForge : Design & Build Challenge",
+    description:
+      "Build a clean, creative, and functional website under time pressure.",
+    details:
+      "WebForge tests both design and development skills as participants create a complete web experience within a limited timeframe. Judging is based on UI/UX quality, responsiveness, performance, accessibility, code structure, and originality. Competitors must combine aesthetics with technical precision to stand out.",
+    maxMembers: 3,
+    image: "/web-dev.jpg",
+    time: "1:00 PM",
+    duration: "2 hours",
+    type: "team",
+    bgColor: "sky",
+  },
 
-    {
-        id: "tech-heist",
-        title: "Codebreakers : The Great Tech Heist",
-        description:
-            "A high-stakes treasure hunt where technology meets strategy. Teams must decode clues, solve ciphers, crack hidden patterns, and navigate a network of brain-bending challenges scattered across the campus. Every puzzle solved takes you one step closer to uncovering the final treasure. Speed, teamwork, and intelligence decide who wins—this is not just a hunt, it’s a heist of the mind!",
-        image: "/tech-heist.jpg",
-        time: "11:30 AM",
-        duration: "2 hours",
-        type: "team",
-        bgColor: "teal"
-    },
+  {
+    id: "debugging",
+    title: "BugSlayer : Debugging Gauntlet",
+    description:
+      "Find and fix real-world bugs in the fastest time possible.",
+    details:
+      "BugSlayer throws participants into messy, unpredictable codebases filled with logical errors, broken functions, edge-case failures, and performance issues. Participants must identify the root cause quickly, implement fixes efficiently, and ensure stability. This event evaluates analytical thinking, coding expertise, and debugging accuracy under pressure.",
+    image: "/debugging.png",
+    time: "3:30 PM",
+    duration: "2 hours",
+    type: "solo",
+    bgColor: "purple",
+  },
+
+  {
+    id: "hackathon",
+    title: "Lakhathon : Sprint to Innovation",
+    description:
+      "A rapid-fire hackathon where teams turn ideas into real solutions.",
+    details:
+      "Lakhathon pushes teams to brainstorm, prototype, and develop impactful solutions within a short time window. Participants work collaboratively through ideation, UI/UX planning, coding, debugging, and final presentation. Projects can span AI, web apps, automation tools, social innovation, or unique problem statements. Creativity, teamwork, and execution determine the winners.",
+    maxMembers: 3,
+    image: "/hackathon.avif",
+    time: "2:00 PM",
+    duration: "2 hours",
+    type: "team",
+    bgColor: "green",
+  },
+
+  {
+    id: "tech-heist",
+    title: "Codebreakers : The Great Tech Heist",
+    description:
+      "A strategic treasure hunt filled with puzzles, clues, and tech-based challenges.",
+    details:
+      "Codebreakers is a campus-wide treasure hunt where teams solve encrypted clues, decode ciphers, break patterns, and complete mini challenges at each checkpoint. Tasks involve logic, observation, teamwork, and problem-solving. Each correct clue pushes the team closer to the final treasure, making it a thrilling mix of strategy and speed.",
+    maxMembers: 3,
+    image: "/tech-heist.jpg",
+    time: "11:30 AM",
+    duration: "2 hours",
+    type: "team",
+    bgColor: "teal",
+  },
 ];
