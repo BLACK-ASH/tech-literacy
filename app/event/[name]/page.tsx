@@ -86,23 +86,23 @@ const page = async ({ params }: { params: { name: string } }) => {
             <Link href={`/event/${event.id}/register`}>Register</Link>
           </Button>
         </div>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Participants</h2>
+        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          Participants
+        </h2>
         <Separator className="my-4" />
-        <Suspense fallback={<h1>Loading...</h1>}>
-          {participants &&
-            participants.map((participant: ParticipationType) => (
-              <Card key={participant.members[0].name}>
-                <CardContent>
-                  {participant.members.map((member,i) => (
-                    <div key={member.name}>
-                      {i !== 0 &&<Separator className="my-2 h-px bg-primary"/>}
-                      <h3>{member.name}</h3>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-        </Suspense>
+        {participants &&
+          participants.map((participant: ParticipationType) => (
+            <Card key={participant.members[0].name}>
+              <CardContent>
+                {participant.members.map((member, i) => (
+                  <div key={member.name}>
+                    {i !== 0 && <Separator className="my-2 h-px bg-primary" />}
+                    <h3>{member.name}</h3>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          ))}
       </main>
     </div>
   );

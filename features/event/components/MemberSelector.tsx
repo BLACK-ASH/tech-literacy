@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { ParticipationType } from "@/lib/Database/Models/participation.model";
 import { User } from "@/lib/Auth/auth-client";
@@ -111,18 +111,17 @@ const MemberSelector = ({
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search user..."
                 />
+                  {results.length === 0 && <p>No users found</p>}
 
-                {results.length === 0 && <p>No users found</p>}
-
-                {results
-                  .filter(
-                    (u) => u.email !== form.watch("members")[0]?.email // prevent self-selection
-                  )
-                  .map((u) => (
-                    <div key={u.email} onClick={() => addMember(u.email)}>
-                      {u.name} — {u.email}
-                    </div>
-                  ))}
+                  {results
+                    .filter(
+                      (u) => u.email !== form.watch("members")[0]?.email // prevent self-selection
+                    )
+                    .map((u) => (
+                      <div key={u.email} onClick={() => addMember(u.email)}>
+                        {u.name} — {u.email}
+                      </div>
+                    ))}
               </div>
             </PopoverContent>
           </Popover>
