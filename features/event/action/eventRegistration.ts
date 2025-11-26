@@ -2,6 +2,7 @@
 
 import connectDB from "@/lib/Database/connection";
 import Participation, { ParticipationType } from "@/lib/Database/Models/participation.model";
+import { sendEventConfirmationMail } from "@/lib/Mailer/send-email-registration-conformation";
 
 export const eventRegister = async (data: ParticipationType) => {
     await connectDB();
@@ -45,6 +46,11 @@ export const eventRegister = async (data: ParticipationType) => {
         // 3. Create the registration
         // -------------------------------------
         const res = await Participation.create(data);
+
+        // -------------------------------------
+        // 4. Send confirmation email
+        // -------------------------------------
+        sendEventConfirmationMail(data);
 
         return {
             status: "success",
