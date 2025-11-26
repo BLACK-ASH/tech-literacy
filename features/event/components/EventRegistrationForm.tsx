@@ -2,6 +2,7 @@
 
 import {
   Field,
+  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -18,6 +19,7 @@ import { authClient } from "@/lib/Auth/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { eventRegister } from "../action/eventRegistration";
+import { InfoIcon } from "lucide-react";
 
 // ----------------- ZOD -----------------
 const eventFormSchema = z.object({
@@ -97,10 +99,19 @@ const EventRegistrationForm = ({ event }: { event: Event }) => {
             </Field>
           )}
         />
+        {event.type === "team" && (
+          <span className="text-foreground text-sm flex items-center">
+            <InfoIcon className="mr-2 size-4" /> All team members must be registered.
+          </span>
+        )}
         <MemberSelector form={form} maxMembers={event?.maxMembers || 1} />
       </FieldGroup>
 
-      <Button disabled={form.formState.isSubmitting} type="submit" className="mt-4">
+      <Button
+        disabled={form.formState.isSubmitting}
+        type="submit"
+        className="mt-4"
+      >
         {form.formState.isSubmitting ? "Registering..." : "Register"}
       </Button>
     </form>
