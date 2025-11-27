@@ -5,61 +5,44 @@ import Participation, { ParticipationType } from "@/lib/Database/Models/particip
 import { sendEventConfirmationMail } from "@/lib/Mailer/send-email-registration-conformation";
 
 export const eventRegister = async (data: ParticipationType) => {
-    await connectDB();
+  await connectDB();
 
-    try {
-        // -------------------------------------
-        // 1. Check if any member already registered for the same event
-        // -------------------------------------
-        const memberEmails = data.members.map(m => m.email);
+  try {
+    // -------------------------------------
+    // 1. Check if any member already registered for the same event
+    // -------------------------------------
+    const memberEmails = data.members.map(m => m.email);
 
-        const existingMember = await Participation.findOne({
-            eventId: data.eventId,
-            "members.email": { $in: memberEmails }
-        });
+    const existingMember = await Participation.findOne({
+      eventId: data.eventId,
+      "members.email": { $in: memberEmails }
+    });
 
-        if (existingMember) {
-            return {
-                status: "error",
-                message: "One or more members are already registered for this event."
-            };
-        }
-
-        // -------------------------------------
-        // 2. Check if team name already exists for this event (only for teams)
-        // -------------------------------------
-        if (data.type === "team") {
-            const teamExists = await Participation.findOne({
-                eventId: data.eventId,
-                name: data.name
-            });
-
-            if (teamExists) {
-                return {
-                    status: "error",
-                    message: "A team with this name already registered for this event."
-                };
-            }
-        }
-
-        // -------------------------------------
-        // 3. Create the registration
-        // -------------------------------------
-        const res = await Participation.create(data);
-
-        // -------------------------------------
-        // 4. Send confirmation email
-        // -------------------------------------
-        sendEventConfirmationMail(data);
-
-        return {
-            status: "success",
-            message: "Registration successful",
-            data: JSON.parse(JSON.stringify(res))
-        };
-
-    } catch (e) {
-        console.error("Registration error:", e);
-        return { status: "error", message: "Registration failed" };
+    if (existingMember) {
+      return {
+        status: "error",
+        message: "One or more members are already registered for this event."
+      };
     }
+
+    // -------------------------------------
+    // 2. Create the registration
+    // -------------------------------------
+    const res = await Participation.create(data);
+
+    // -------------------------------------
+    // 3. Send confirmation email
+    // -------------------------------------
+    sendEventConfirmationMail(data);
+
+    return {
+      status: "success",
+      message: "Registration successful",
+      data: JSON.parse(JSON.stringify(res))
+    };
+
+  } catch (e) {
+    console.error("Registration error:", e);
+    return { status: "error", message: "Registration failed" };
+  }
 };
