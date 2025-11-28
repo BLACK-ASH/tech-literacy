@@ -42,7 +42,7 @@ export const eventsData: Event[] = [
       "Build a clean, creative, and functional website under time pressure.",
     details:
       "WebForge tests both design and development skills as participants create a complete web experience within a limited timeframe. Judging is based on UI/UX quality, responsiveness, performance, accessibility, code structure, and originality. Competitors must combine aesthetics with technical precision to stand out.",
-    maxMembers: 2,
+    maxMembers: 3,
     image: "/web-dev.jpg",
     time: "1:00 PM",
     duration: "1 hours",
@@ -71,7 +71,7 @@ export const eventsData: Event[] = [
       "A rapid-fire hackathon where teams turn ideas into real solutions.",
     details:
       "Lakhathon pushes teams to brainstorm, prototype, and develop impactful solutions within a short time window. Participants work collaboratively through ideation, UI/UX planning, coding, debugging, and final presentation. Projects can span AI, web apps, automation tools, social innovation, or unique problem statements. Creativity, teamwork, and execution determine the winners.",
-    maxMembers: 2,
+    maxMembers: 3,
     image: "/hackathon.avif",
     time: "2:00 PM",
     duration: "2 hours",
@@ -86,7 +86,7 @@ export const eventsData: Event[] = [
       "A strategic treasure hunt filled with puzzles, clues, and tech-based challenges.",
     details:
       "Codebreakers is a campus-wide treasure hunt where teams solve encrypted clues, decode ciphers, break patterns, and complete mini challenges at each checkpoint. Tasks involve logic, observation, teamwork, and problem-solving. Each correct clue pushes the team closer to the final treasure, making it a thrilling mix of strategy and speed.",
-    maxMembers: 2,
+    maxMembers: 3,
     image: "/tech-heist.jpg",
     time: "11:30 AM",
     duration: "2 hours",
